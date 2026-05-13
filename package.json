@@ -1,0 +1,16 @@
+{
+  "name": "campus-care",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["server", "client"],
+  "scripts": {
+    "install:all": "npm install",
+    "dev": "concurrently -n api,web -c blue,magenta \"npm run dev -w campus-care-server\" \"npm run dev -w campus-care-client\"",
+    "build": "npm run build -w campus-care-client",
+    "start": "npm run start -w campus-care-server",
+    "test:build": "npm run build -w campus-care-client && node --check server/src/server.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
