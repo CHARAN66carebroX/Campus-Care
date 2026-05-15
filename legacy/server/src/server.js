@@ -1,7 +1,12 @@
 import 'dotenv/config';
 import express from 'express';
 import http from 'http';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import cors from 'cors';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import passport from 'passport';
@@ -132,6 +137,13 @@ app.use('/api/stats', statsRoutes);
 app.use('/api/platform', platformRoutes);
 app.use('/api/users', userRoutes);
 
+// Serve the frontend static files
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Fallback for React Router
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 app.use((_err, _req, res, _next) => {
   console.error(_err);
   res.status(500).json({ message: 'Internal error' });

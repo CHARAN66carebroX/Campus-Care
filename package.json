@@ -1,16 +1,32 @@
 {
-  "name": "campus-care",
+  "name": "temp-next",
+  "version": "0.1.0",
   "private": true,
-  "version": "1.0.0",
-  "workspaces": ["server", "client"],
   "scripts": {
-    "install:all": "npm install",
-    "dev": "concurrently -n api,web -c blue,magenta \"npm run dev -w campus-care-server\" \"npm run dev -w campus-care-client\"",
-    "build": "npm run build -w campus-care-client",
-    "start": "npm run start -w campus-care-server",
-    "test:build": "npm run build -w campus-care-client && node --check server/src/server.js"
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "chart.js": "^4.5.1",
+    "cloudinary": "^2.10.0",
+    "lucide-react": "^1.16.0",
+    "mongoose": "^9.6.2",
+    "next": "16.2.6",
+    "next-auth": "^4.24.14",
+    "nodemailer": "^7.0.13",
+    "react": "19.2.4",
+    "react-chartjs-2": "^5.3.1",
+    "react-dom": "19.2.4",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "@tailwindcss/postcss": "^4",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4"
   }
 }
